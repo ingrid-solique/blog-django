@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %} Blog TI {% endblock %}
+
+{% block main %}
+    <div class="container">
+        <article>
+            <p>
+                <h1>{{ post.titulo }}</h1>
+                <h4>{{ post.subtitulo }}</h4>
+            </p>
+            <p>{{ post.conteudo }}</p>
+            <p>Autor - {{ post.user.first_name | add:' '| add:post.user.last_name }}</p>
+        </article>
+        <div>
+            {% for comentario in comentarios %}
+                {% if comentario.nomeUsuario %}
+                    <h5>{{ comentario.nomeUsuario }}</h5>
+                {% else %}
+                    <h5>Anônimo</h5>
+                {% endif %}
+                <p>{{ comentario.conteudo }}</p>
+            {% endfor %}
+
+            <h5>Novo Comentário</h5>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="#" class="btn btn-danger">Cancelar</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
