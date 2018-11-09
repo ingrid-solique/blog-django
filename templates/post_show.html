@@ -10,7 +10,7 @@
                 <h1>{{ post.titulo }}</h1>
                 <h4>{{ post.subtitulo }}</h4>
             </p>
-            <p>{{ post.conteudo }}</p>
+            <p class="text-justify">{{ post.conteudo }}</p>
             <p>Autor - {{ post.user.first_name | add:' '| add:post.user.last_name }}</p>
         </article>
         <div>

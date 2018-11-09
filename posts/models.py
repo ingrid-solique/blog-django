@@ -34,11 +34,8 @@ class Post(models.Model):
 class Comentario(models.Model):
     nomeUsuario = models.CharField(max_length=255, null=True, blank=True, verbose_name='nome')
     conteudo = models.TextField(verbose_name='comentario')
-    post = models.ForeignKey(Post, on_delete=models.PROTECT)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Comentário'
         verbose_name_plural = 'Comentários'
-
-    def __str__(self):
-        return  self.nomeUsuario
